@@ -14,7 +14,7 @@ namespace Queiroz.LojaVirtual.Web.HtmlHelpers
         public static MvcHtmlString PageLinks(this HtmlHelper html, Models.Paginacao paginacao, Func<int, string> stringUrl)
         {
             StringBuilder resultado = new StringBuilder();
-            for (int i = 0; i < paginacao.TotalIensPorPaginas; i++)
+            for (int i = 1; i < paginacao.TotalPagina; i++)
             {
                 TagBuilder tb = new TagBuilder("a");
                 tb.MergeAttribute("href", stringUrl(i));

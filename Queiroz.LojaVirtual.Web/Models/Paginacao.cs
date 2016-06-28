@@ -8,11 +8,11 @@ namespace Queiroz.LojaVirtual.Web.Models
     public class Paginacao
     {
         public int PaginaAtual { get; set; }
-        public int TotalItens { get; set; }
-        public int TotalIensPorPaginas { get; set; }
-        public int TotalPaginas{
+        public int ItensTotal { get; set; }
+        public int ItensPorPagina { get; set; }
+        public int TotalPagina{
             get {
-                return (int)Math.Ceiling((decimal)TotalIensPorPaginas / TotalItens);
+                return (int)Math.Ceiling((decimal)ItensTotal / ItensPorPagina);
             }
         }
 

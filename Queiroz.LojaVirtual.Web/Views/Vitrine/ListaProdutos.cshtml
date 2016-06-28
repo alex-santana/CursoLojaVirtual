@@ -1,70 +1,22 @@
-﻿@model IEnumerable<Queiroz.LojaVirtual.Dominio.Entidades.Produto>
+﻿@using Queiroz.LojaVirtual.Web.HtmlHelpers
+@model Queiroz.LojaVirtual.Web.Models.ProdutosViewModel
+ 
+<div class="container">
+    @foreach (var item in Model.Produtos)
+    {
 
-@{
-    ViewBag.Title = "ListaProdutos";
-}
+        @Html.Partial("ProdutoDetalhes", item)
 
-<h2>ListaProdutos</h2>
+    }
+    <div class="btn-group pull-right">
+        @Html.PageLinks(Model.Paginas, y => Url.Action("ListaProdutos", new { pagina = y }))
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Preco)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Preco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProdutoID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ProdutoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProdutoID })
-        </td>
-        <td>
-            
-           
-        </td>
-    </tr>
-}
-<tfoot>
-    <tr>
 
-        @{
-            int querystringAnterior = Request.QueryString["Pagina"] != null ? Convert.ToInt32(Request.QueryString["Pagina"].ToString()): 1;
-            int querystringProxima = Request.QueryString["Pagina"] != null ? Convert.ToInt32(Request.QueryString["Pagina"].ToString()) : 1;
 
-        }
-        @Html.ActionLink("<< Anterior", "ListaProdutos", new { Pagina = querystringAnterior <= 1? (querystringAnterior - 1) : 1 }) -  
-        @Html.ActionLink("Próxima >>", "ListaProdutos", new { Pagina = (querystringProxima + 1)})
-        
-    </tr>
 
-</tfoot>
-</table>
+
 
 
